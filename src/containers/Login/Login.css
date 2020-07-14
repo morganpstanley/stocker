@@ -1,0 +1,28 @@
+#login-body {
+    text-align: center;
+}
+
+#login-body input {
+    margin: 5px;
+    width: 10rem;
+    height: 1.5rem;
+    font-style: italic;
+}
+
+#login-body input {
+    padding-left: 10px;
+}
+
+#login-body button {
+    margin: 10px;
+}
+
+#login-page {
+    height: 100vh;
+    width: 100vw;
+    background-image: url(/auduban1.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: right bottom;
+    background-size: 30%;
+ }

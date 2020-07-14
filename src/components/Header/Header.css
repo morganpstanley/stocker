@@ -1,0 +1,31 @@
+#header {
+    height: 30px;
+    font-size: larger;
+    text-align: center;
+    background-color: #5cb85c;
+    padding-top: 13px;
+    padding-bottom: 13px;
+    margin-top: 0rem;
+    display: grid;
+      grid-template-columns: repeat(5, 1fr);
+  }
+  
+  #logo-er {
+    font-weight: 200;
+  }
+
+  #logo {
+    grid-column: 3;
+  }
+
+  #nav {
+    font-size: .3rem;
+    grid-column: 5;
+    align-self: center;
+    text-align: end;
+    padding-right: 10px;
+  }
+
+  #welcome-user {
+    margin-right: 1rem;
+  }

@@ -1,0 +1,86 @@
+#add-stock-form {
+  height: 85%;
+  grid-column: 2;
+  grid-row: 1;
+  display: grid;
+    grid-template-rows: 1fr 4fr;
+  justify-items: center;
+}
+
+#add-stock-title {
+  margin-bottom: 0rem;;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+#add-stock-select {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-rows: 2fr 0fr 1fr 1fr;
+  grid-template-columns: repeat(5, 20%);
+  align-items: center;
+  justify-items: center;
+  row-gap: 2px;
+}
+
+#react-select {
+  font-size: .5rem;
+  width: 90%;
+  grid-row: 1;
+  grid-column: 1 / 6;
+}
+
+#stock-options {
+  margin: .5rem 2rem 0rem;
+  font-size: .5rem;
+}
+
+#stock-purchase-price, #stock-purchase-quantity {
+  font-size: .4rem;
+  display: inline;
+}
+
+[name="amountOfShares"] {
+  grid-row: 3;
+  grid-column: 4;
+}
+
+[name="costPerShare"] {
+  grid-row: 3;
+  grid-column: 2;
+}
+
+#stock-purchase-price {
+  grid-row: 2;
+  grid-column: 2;
+  height: 10px;
+}
+
+#stock-purchase-quantity {
+  grid-row: 2;
+  grid-column: 4;
+  height: 10px;
+}
+
+#add-stock-form input {
+  grid-row: 3;
+  width: 30px;
+}
+
+#add-stock-form button {
+  font-weight: 700;
+  padding: 0rem;
+  border-width: 0rem;
+  border-top-width: 4px;
+  background-color: white;
+  color: black;
+  height: 100%;
+  width: 100%;
+  grid-row: 4;
+  grid-column: 1 / 6;
+}
+
+#add-stock-form button:hover {
+  background-color: rgb(233, 233, 233);
+}

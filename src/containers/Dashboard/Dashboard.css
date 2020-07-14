@@ -1,0 +1,13 @@
+#dashboard {
+    height: 12rem;
+    display: grid;
+    grid-template-columns: repeat(5, 20%);
+    grid-template-rows: repeat(1, 100%);
+    align-items: center;
+  }
+  
+  .dashboard-part {
+    border: black;
+    border-width: .2rem;
+    border-style: solid;
+  }

@@ -1,0 +1,27 @@
+#signup-body {
+    text-align: center;
+}
+
+#signup-body input {
+    margin: 5px;
+    width: 10rem;
+    height: 1.5rem;
+    font-style: italic;
+}
+
+#signup-body input {
+    padding-left: 10px;
+}
+
+#signup-body button {
+    margin: 10px;
+}
+
+#signup-page {
+    height: 100vh;
+    width: 100vw;
+    background-image: url(/audubon2.png), url(/audobon3.png);
+    background-repeat: no-repeat;
+    background-position: bottom left, top right;
+    background-size: 30%;
+ }

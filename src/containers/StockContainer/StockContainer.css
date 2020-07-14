@@ -1,0 +1,25 @@
+.stock-container {
+    margin: 9px 0px 9px;
+    border-width: 3px 0px 0px;
+    border-color: rgb(24, 24, 24);
+    border-style: solid;
+    height: 100%;
+    width: 100%;
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 10px 0px;
+}
+
+span.stock-container-title {
+    position: relative;
+    left: 2rem;
+    padding: 8px 20px 4px;
+    top: 6px;
+    background-color: #5cb85c;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    font-size: .4rem;
+    font-weight: 600;
+    font-style: italic;
+}
