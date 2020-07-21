@@ -2,11 +2,7 @@ class StocksController < ApplicationController
     skip_before_action :verify_authenticity_token
 
     def index
-        if session[:user_id]
-            @stocks = Stock.where("user_id = ?", session[:user_id])
-        else
-            @stocks = Stock.all
-        end
+        @stocks = Stock.all
         render json: @stocks
     end
 
