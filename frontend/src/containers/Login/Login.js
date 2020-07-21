@@ -71,7 +71,7 @@ class Login extends Component {
               required
             /> <br />
             <input 
-              type="text" 
+              type="password" 
               placeholder="password" 
               name="password" 
               value={this.state.password} 
