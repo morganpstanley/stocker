@@ -13,10 +13,6 @@ class Signup extends Component {
       password_confirmation: ''
   }
 
-  componentDidMount = () => {
-    return this.props.loggedInStatus ? this.redirect() : null
-  }
-
   handleSubmit = (event) => {
     console.log('im going try')
     event.preventDefault()
@@ -72,7 +68,7 @@ class Signup extends Component {
               required
             /> <br />
             <input 
-              type="text" 
+              type="password" 
               placeholder="password" 
               name="password" 
               value={this.state.password} 
@@ -80,7 +76,7 @@ class Signup extends Component {
               required
             /> <br />
             <input 
-              type="text" 
+              type="password" 
               placeholder="confirm password" 
               name="password_confirmation" 
               value={this.state.password_confirmation} 
