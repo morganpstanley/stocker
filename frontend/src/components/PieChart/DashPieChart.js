@@ -4,9 +4,9 @@ import './DashPieChart.css'
 
 const colorOptions = [
   '#0275d8',
+  '#f0ad4e',
   '#5cb85c',
   '#5bc0de',
-  '#f0ad4e',
   '#d9534f',
   '#0275d8',
   '#5cb85c',
@@ -42,14 +42,14 @@ const DashPieChart = ({stocks}) => {
 
     return (
         <div className="dashboard-part" id="pie-chart">
-           <PieChart
+          <PieChart
             data={data()}
             label={({ dataEntry }) => dataEntry.title}
             labelStyle={{
               ...defaultLabelStyle,
             }}
             radius={42}
-      labelPosition={112}
+      labelPosition={70}
             />
        </div>
     )
