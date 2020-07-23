@@ -22,7 +22,7 @@ class SessionsController < ApplicationController
         if logged_in? && current_user
             render json: {
                 logged_in: true,
-                user: current_user
+                user: {id: current_user.id,  username: current_user.username}
             }
         else
             render json: {
@@ -43,7 +43,7 @@ class SessionsController < ApplicationController
 private
 
     def session_params
-        params.require(:user).permit(:username, :password)
+        params.require(:payload).require(:user).permit(:username, :password)
     end
     
 end
