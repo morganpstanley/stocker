@@ -7,6 +7,14 @@ const Header = ( props ) => {
         return props.user ? 'Welcome, ' + props.user.username : null
     }
 
+    const renderButton = () => {
+        if (props.location.pathname === '/') {
+            return <button onClick={(() => props.handleLogout())}>
+            Logout
+        </button>
+        }
+    }
+
     return (
         <h1 id="header">
             <span id='logo'>
@@ -14,9 +22,7 @@ const Header = ( props ) => {
             </span>
             <span id="nav">
                 <span id="welcome-user"> {renderUsername()} </span>
-                <button onClick={(() => props.handleLogout())}>
-                    Logout
-                </button>
+                {renderButton()}
             </span>
         </h1>
     )

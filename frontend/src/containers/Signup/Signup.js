@@ -53,7 +53,7 @@ class Signup extends Component {
   render() {
     return(
       <div id="signup-page">
-        <Header />
+        <Header location={this.props.location}/>
         <div id="signup-body">
           <h1>WELCOME TO STOCKER.</h1>
           <p>A simple platform to keep track of your stock portfolio. </p>

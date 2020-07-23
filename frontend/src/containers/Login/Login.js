@@ -58,7 +58,7 @@ class Login extends Component {
   render() {
     return(
       <div id='login-page'>
-          <Header />
+          <Header location={this.props.location}/>
           <div id="login-body">
             <h1>WELCOME.</h1>
             <form onSubmit={this.handleSubmit}>

@@ -65,7 +65,7 @@ class Home extends Component {
   render() {
     return (
       <div className="app">
-        <Header user={this.props.user} handleLogout={this.handleLogoutClick} />
+        <Header user={this.props.user} handleLogout={this.handleLogoutClick} location={this.props.location}/>
         <Dashboard stocks={this.ownedStocks()}/>
         <StockContainer user ={this.props.user} stocks={this.ownedStocks()} stockType="OWNED" />
         <StockContainer stocks={this.watchedStocks()} stockType="FOLLOWING" />
