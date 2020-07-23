@@ -1,21 +1,19 @@
-import React, { Component } from 'react';
+import React from 'react';
 import AddStockForm from '../../components/AddStockForm/AddStockForm';
 import UserInvestments from '../../components/UserInvestments/UserInvestments'
 import DashPieChart from '../../components/PieChart/DashPieChart'
 import './Dashboard.css'
 
-class Dashboard extends Component {
+const Dashboard = (props) => {
 
 
-    render() {
-        return(
-            <div id="dashboard">
-                <AddStockForm />
-                <DashPieChart stocks={this.props.stocks}/>
-                <UserInvestments stocks={this.props.stocks}/>
-            </div>
-        )
-    }
+    return(
+        <div id="dashboard">
+            <AddStockForm />
+            <DashPieChart stocks={props.stocks}/>
+            <UserInvestments stocks={props.stocks}/>
+        </div>
+    )
 }
 
 export default Dashboard
