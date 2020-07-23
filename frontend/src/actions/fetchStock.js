@@ -1,4 +1,4 @@
-export const fetchStock = (tickerSymbol, companyName, amountOfShares, costPerShare, id) => {
+export const fetchStock = ({tickerSymbol, companyName, amountOfShares, costPerShare, id}) => {
     
     return (dispatch) => {
         dispatch({ type: 'LOADING_STOCKS'})

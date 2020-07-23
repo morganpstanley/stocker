@@ -62,8 +62,13 @@ class AddStockForm extends Component {
                 name: this.state.companyName
             })
             .then(response => {
-                console.log('here you go, ', response)
-                this.props.fetchStock(this.state.tickerSymbol, this.state.companyName, amountOfShares, costPerShare, response.id)
+                this.props.fetchStock({
+                    tickerSymbol: this.state.tickerSymbol, 
+                    companyName: this.state.companyName, 
+                    amountOfShares: amountOfShares, 
+                    costPerShare: costPerShare, 
+                    id: response.id
+                })
                 this.setState({
                     value: '',
                     tickerSymbol: '',
@@ -122,7 +127,7 @@ class AddStockForm extends Component {
 
 const mapDispatchToProps = dispatch => {
     return({
-        fetchStock: (tickerSymbol, companyName, amountOfShares, costPerShare, stockId) => dispatch(fetchStock(tickerSymbol, companyName, amountOfShares, costPerShare, stockId))
+        fetchStock: (stock) => dispatch(fetchStock(stock))
     })
 }
 

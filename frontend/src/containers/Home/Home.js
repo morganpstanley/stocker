@@ -36,7 +36,16 @@ class Home extends Component {
         .then(json => {    
           json.forEach(element => {
             if (this.props.user.id.toString() === element.user_id) {
-              this.props.fetchStock(element.ticker_symbol, element.name, element.purchase_amount, element.purchase_price, element.id)
+
+              const stock = {
+                amountOfShares: element.purchase_amount,
+                costPerShare: element.purchase_price,
+                tickerSymbol: element.ticker_symbol,
+                companyName: element.name,
+                id: element.id
+              }
+              
+              this.props.fetchStock(stock)
             }       
           });
         }) 
@@ -83,7 +92,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return({
-    fetchStock: (tickerSymbol, companyName, amountOfShares, costPerShare, id) => dispatch(fetchStock(tickerSymbol, companyName, amountOfShares, costPerShare, id)),
+    fetchStock: (stock) => dispatch(fetchStock(stock)),
     loginUser: (username, id) => dispatch(loginUser(username, id))
   })
 }
