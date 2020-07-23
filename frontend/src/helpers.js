@@ -22,5 +22,8 @@ export const getAPI = (url) => {
 }
 
 export const deleteAPI = (url) => {
-    return fetch(`http://localhost:3000/${url}`, {credentials: "include"})
+    return fetch(`http://localhost:3000/${url}`, {
+        credentials: "include", 
+        method: 'DELETE'
+    })
 }

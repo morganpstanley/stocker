@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { loginUser } from '../../actions/loginUser'
 import Header from '../../components/Header/Header'
 import { Link, withRouter} from 'react-router-dom';
+import { postAPI } from '../../helpers'
 import './Login.css'
 import axios from 'axios'
 
@@ -42,13 +43,14 @@ class Login extends Component {
       password: password,
     }
  
-    axios.post('http://localhost:3000/login', {user}, {withCredentials: true})
+    postAPI('login', {user})
     .then(response => {
-      if (response.data.logged_in) {
+      if (response.logged_in) {
         this.props.history.push('/')
       } else {
+        alert('Error - Wrong username or password. ')
         this.setState({
-          errors: response.data.errors
+          errors: response.errors
         })
       }
     })
