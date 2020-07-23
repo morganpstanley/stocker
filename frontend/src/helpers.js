@@ -1,27 +1,26 @@
-export const fetchData = (url, method, payload) => {
+export const postAPI = (url, payload) => {
 
-    if (payload) {
-        return  fetch(`http://localhost:3000/${url}`, {
-            method: method,
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            },
-            body: JSON.stringify({
-                payload
-            })
+    return fetch(`http://localhost:3000/${url}`, {
+        credentials: "include",
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            'Access-Control-Allow-Credentials': true
+        },
+        body: JSON.stringify({
+            payload: payload
         })
-        .then(res => res.json())
+    })
+    .then(res => res.json())
 
-    } else {
-        return  fetch(`http://localhost:3000/${url}`, {
-            method: method,
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            },
-            credentials: "include"
-        })
-        .then(res => res.json())
-    }
+}
+
+export const getAPI = (url) => {
+    return fetch(`http://localhost:3000/${url}`, {credentials: "include"})
+    .then(res => res.json())
+}
+
+export const deleteAPI = (url) => {
+    return fetch(`http://localhost:3000/${url}`, {credentials: "include"})
 }

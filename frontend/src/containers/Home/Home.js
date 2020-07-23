@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from 'react-router'
 import { fetchStock } from '../../actions/fetchStock'
 import { loginUser } from '../../actions/loginUser'
-import axios from 'axios'
+import { getAPI, deleteAPI } from '../../helpers'
 
 import Header from '../../components/Header/Header'
 import StockContainer from '../StockContainer/StockContainer';
@@ -27,15 +27,12 @@ class Home extends Component {
   }
 
   loginStatus = () => {
-    axios.get('http://localhost:3000/logged_in', {withCredentials: true})
+    getAPI('logged_in')
     .then(response => {
-      if (response.data.logged_in) {
-        const { id, username } = response.data.user
+      if (response.logged_in) {
+        const { id, username } = response.user
         this.props.loginUser(username, parseInt(id))
-        fetch(`http://localhost:3000/stocks`, {withCredentials: true})
-        .then(response => {
-          return response.json();
-        })
+        getAPI('stocks')
         .then(json => {    
           json.forEach(element => {
             if (this.props.user.id.toString() === element.user_id) {
@@ -45,13 +42,11 @@ class Home extends Component {
         }) 
       }
     })
-    .then(
-    )
     .catch(error => console.log('api errors:', error))
   }
 
   handleLogoutClick = () => {
-    return axios.delete('http://localhost:3000/logout', {withCredentials: true})
+   deleteAPI('logout')
     .then(response => {
         this.props.history.push('/login')
         window.location.reload()

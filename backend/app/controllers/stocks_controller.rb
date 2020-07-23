@@ -28,7 +28,7 @@ class StocksController < ApplicationController
 private
 
     def stock_params
-        params.require(:stock).permit(:name, :user_id, :purchase_amount, :purchase_price, :ticker_symbol)
+        params.require(:payload).permit(:name, :user_id, :purchase_amount, :purchase_price, :ticker_symbol)
     end
 
 end

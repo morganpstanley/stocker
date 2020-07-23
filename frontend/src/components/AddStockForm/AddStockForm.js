@@ -1,9 +1,9 @@
 
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import axios from 'axios'
 
 import { fetchStock } from "../../actions/fetchStock";
+import { postAPI } from '../../helpers'
 import AsyncSelect from 'react-select/async';
 import './AddStockForm.css'
 
@@ -55,16 +55,15 @@ class AddStockForm extends Component {
         const amountOfShares = (isNaN(this.state.amountOfShares) || this.state.amountOfShares === 0) ? null : this.state.amountOfShares
         const costPerShare = (isNaN(this.state.costPerShare) || this.state.costPerShare === 0) ? null : this.state.costPerShare
         if (this.state.tickerSymbol !== "" && this.state.companyName !== "") {
-            axios.post("http://localhost:3000/stocks", {
-                stock: {
+            postAPI('stocks',  {
                 purchase_amount: amountOfShares,
                 purchase_price: costPerShare,
                 ticker_symbol: this.state.tickerSymbol,
                 name: this.state.companyName
-                }
-            }, {withCredentials: true})
+            })
             .then(response => {
-                this.props.fetchStock(this.state.tickerSymbol, this.state.companyName, amountOfShares, costPerShare, response.data.id)
+                console.log('here you go, ', response)
+                this.props.fetchStock(this.state.tickerSymbol, this.state.companyName, amountOfShares, costPerShare, response.id)
                 this.setState({
                     value: '',
                     tickerSymbol: '',
