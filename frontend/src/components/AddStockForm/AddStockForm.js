@@ -20,6 +20,7 @@ class AddStockForm extends Component {
     }
 
     componentDidMount() {
+
         return fetch('https://finnhub.io/api/v1/stock/symbol?exchange=US&token=bqfppqvrh5r9oe99locg')
         .then(response => {
             return response.json()
@@ -49,40 +50,38 @@ class AddStockForm extends Component {
         }, 1000);
     };
 
-    handleSubmit = event => {
+    handleSubmit = async(event) => {
         event.preventDefault()
 
         const amountOfShares = (isNaN(this.state.amountOfShares) || this.state.amountOfShares === 0) ? null : this.state.amountOfShares
         const costPerShare = (isNaN(this.state.costPerShare) || this.state.costPerShare === 0) ? null : this.state.costPerShare
-        if (this.state.tickerSymbol !== "" && this.state.companyName !== "") {
-            postAPI('stocks',  {
-                purchase_amount: amountOfShares,
-                purchase_price: costPerShare,
-                ticker_symbol: this.state.tickerSymbol,
-                name: this.state.companyName
-            })
-            .then(response => {
-                this.props.fetchStock({
-                    tickerSymbol: this.state.tickerSymbol, 
-                    companyName: this.state.companyName, 
-                    amountOfShares: amountOfShares, 
-                    costPerShare: costPerShare, 
-                    id: response.id
-                })
-                this.setState({
-                    value: '',
-                    tickerSymbol: '',
-                    companyName: '',
-                    amountOfShares: 0,
-                    costPerShare: 0,
-                })
-            })
-            .catch(error => {
-                console.log(error)
-            })
-        } else {
-            alert('Error - Please select a stock.')
+
+        if (this.state.tickerSymbol === "" && this.state.companyName === "") {
+            return alert('Error - Please select a stock.')
         }
+
+        const postedStock = await(postAPI('stocks',  {
+            purchase_amount: amountOfShares,
+            purchase_price: costPerShare,
+            ticker_symbol: this.state.tickerSymbol,
+            name: this.state.companyName
+        }))
+
+        this.props.fetchStock({
+            tickerSymbol: this.state.tickerSymbol, 
+            companyName: this.state.companyName, 
+            amountOfShares: amountOfShares, 
+            costPerShare: costPerShare, 
+            id: postedStock.id
+        })
+
+        this.setState({
+            value: '',
+            tickerSymbol: '',
+            companyName: '',
+            amountOfShares: 0,
+            costPerShare: 0,
+        })
     }
 
     handleSelectChange = event => {
@@ -111,7 +110,6 @@ class AddStockForm extends Component {
                         loadOptions={this.loadOptions}
                         defaultOptions={true}
                         onChange={this.handleSelectChange}
-                        onBlur={() => (event) => {event.preventDefault()}}
                         id="react-select"
                     />
                     <div id="stock-purchase-quantity">QUANTITY</div> 

@@ -26,39 +26,37 @@ class Home extends Component {
     }
   }
 
-  loginStatus = () => {
-    getAPI('logged_in')
-    .then(response => {
-      if (response.logged_in) {
-        const { id, username } = response.user
-        this.props.loginUser(username, parseInt(id))
-        getAPI('stocks')
-        .then(json => {    
-          json.forEach(element => {
-            if (this.props.user.id.toString() === element.user_id) {
+  loginStatus = async() => {
+    let userResponse = await(getAPI('logged_in'))
+    let stockResponse = await(getAPI('stocks'))
 
-              const stock = {
-                amountOfShares: element.purchase_amount,
-                costPerShare: element.purchase_price,
-                tickerSymbol: element.ticker_symbol,
-                companyName: element.name,
-                id: element.id
-              }
-              
-              this.props.fetchStock(stock)
-            }       
-          });
-        }) 
-      }
-    })
-    .catch(error => console.log('api errors:', error))
+    if (userResponse.logged_in) {
+      const { id, username } = userResponse.user
+      this.props.loginUser(username, parseInt(id))
+
+      stockResponse.forEach(element => {
+        if (this.props.user.id.toString() === element.user_id) {
+
+          const stock = {
+            amountOfShares: element.purchase_amount,
+            costPerShare: element.purchase_price,
+            tickerSymbol: element.ticker_symbol,
+            companyName: element.name,
+            id: element.id
+          }
+          
+          this.props.fetchStock(stock)
+        }  
+      });    
+    }
+
   }
 
   handleLogoutClick = () => {
    deleteAPI('logout')
     .then(response => {
-        this.props.history.push('/login')
-        window.location.reload()
+      this.props.history.push('/login')
+      window.location.reload()
     })
     .catch(error => console.log(error))
     }

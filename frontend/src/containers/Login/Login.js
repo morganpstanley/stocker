@@ -5,7 +5,6 @@ import Header from '../../components/Header/Header'
 import { Link, withRouter} from 'react-router-dom';
 import { postAPI } from '../../helpers'
 import './Login.css'
-import axios from 'axios'
 
 class Login extends Component {
 
@@ -33,7 +32,7 @@ class Login extends Component {
     })
   };
 
-  handleSubmit = (event) => {
+  handleSubmit = async(event) => {
     event.preventDefault()
 
     const {username, password} = this.state
@@ -43,19 +42,17 @@ class Login extends Component {
       password: password,
     }
  
-    postAPI('login', {user})
-    .then(response => {
-      if (response.logged_in) {
-        this.props.history.push('/')
-      } else {
-        alert('Error - Wrong username or password. ')
-        this.setState({
-          errors: response.errors
-        })
-      }
-    })
-    .catch(error => console.log('api errors:', error))
-  };
+    let response = await(postAPI('login', {user}))
+
+    if (response.logged_in) {
+      this.props.history.push('/')
+    } else {
+      alert('Error - Wrong username or password. ')
+      this.setState({
+        errors: response.errors
+      })
+    }
+  }
 
   render() {
     return(
