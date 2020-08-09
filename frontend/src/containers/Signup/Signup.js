@@ -14,7 +14,6 @@ class Signup extends Component {
   }
 
   handleSubmit = (event) => {
-    console.log('im going try')
     event.preventDefault()
     const {username, password_confirmation, password} = this.state
 
@@ -26,8 +25,6 @@ class Signup extends Component {
       
     axios.post("http://localhost:3000/users", {user}, {withCredentials: true})
     .then(response => {
-      console.log('deeper')
-      console.log('here:', response.data)
       if (response.data.status === 'created') {
         this.props.history.push('/')
       } else {
@@ -40,13 +37,9 @@ class Signup extends Component {
     };
 
   handleChange = event => {
-    console.log(event.target.value)
-
     this.setState({
       [event.target.name]: event.target.value
     })
-
-    console.log('state: ', this.state)
   }
 
 
